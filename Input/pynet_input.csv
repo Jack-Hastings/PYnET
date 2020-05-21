@@ -1,0 +1,95 @@
+﻿Model options:,
+Mode type,1
+Model type,3
+Site settings:,
+Latitude,44
+Ozone effect on WUE,0
+CO2 effect,0
+Absolute N content,0
+Simulated years from,1981
+Simulated years to,2014
+Climate file name,C:\pnet\PNET\Case\HB\HB_Climate.txt           
+"Water hold capacity,cm",12
+"Snow pack,cm",13
+"Soil Water, cm",12
+Soil moisture factor,0
+Fast flow fraction,0.1
+Water realease factor,0.04
+Water stress,1
+"Humus mass, g/M2",13500
+"Humus N mass, g/M2",390
+"Soil NH4 content, g/M2",0.01
+Humus decomposition constant,0.075
+Soil respiration factor A,27.46
+Soil respiration factor B,0.068
+N immobolization factor A,151
+N immobolization factor B,-35
+Tree settings:,
+ForestCode,2
+Forest age,80
+Leaf mass,0
+Wood mass,20000
+Dead Wood mass,11300
+Root mass,6
+BudC,135
+WoodC,300
+PlantC,900
+PlantN,1
+N Ratio,1.4
+AmaxA,-46
+AmaxB,71.9
+HalfSat,200
+BaseFolRespFrac,0.1
+RespQ10,2
+PsnTMin,4
+PsnTOpt,24
+AmaxFrac,0.75
+FolReten,1
+"SLWmax, 'g dry matter/m2 leaf",100
+"SLWdel, 'g dry matter/(m2 leaf * g leaf mass)",0.2
+GDDFolStart,100
+GDDFolEnd,900
+GDDWoodStart,900
+GDDWoodEnd,1600
+SenescStart,270
+Max leaf mass,340
+Min leaf mass,0
+k,0.58
+"FolNCon, by weight",2
+"FolRelGrowMax, '/yr",0.95
+CFracBiomass,0.45
+RootAllocA,0
+RootAllocB,2
+GRespFrac,0.25
+WoodMRFrc,0.07
+RootMRespFrc,1
+PlantCReserveFrac,0.75
+MinWoodFolRatio,1
+DVPD1,0.05
+DVPD2,2
+WUEConst,10.9
+PrecIntFrac,0.11
+FLPctN,0.009
+RLPctN,0.012
+WLPctN,0.002
+FolNConRange,0.6
+FolNRetrans,0.5
+MaxNStore,20
+WoodTurnover,0.025
+RootTurnoverA,0.789
+RootTurnoverB,0.191
+RootTurnoverC,0.021
+WoodLitLossRate,0.1
+WoodLitCLoss,0.8
+Management settings:,
+Total number of disturbance,0
+Agriculture from year,0
+Agriculture to year,0
+Agriculture removal fraction,0
+Fertilization from year and DOY,0
+Fertilization from year and DOY,0
+Fertilization to year and DOY,0
+Fertilization to year and DOY,0
+Fertilization rate for NH4 | NO3 | Urea,0
+Fertilization rate for NH4 | NO3 | Urea,0
+Fertilization rate for NH4 | NO3 | Urea,0
