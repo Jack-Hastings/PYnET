@@ -86,10 +86,10 @@ Total number of disturbance,0
 Agriculture from year,0
 Agriculture to year,0
 Agriculture removal fraction,0
-Fertilization from year and DOY,0
-Fertilization from year and DOY,0
-Fertilization to year and DOY,0
-Fertilization to year and DOY,0
-Fertilization rate for NH4 | NO3 | Urea,0
-Fertilization rate for NH4 | NO3 | Urea,0
-Fertilization rate for NH4 | NO3 | Urea,0
+Fertilization from year,0
+Fertilization from DOY,0
+Fertilization to year,0
+Fertilization to DOY,0
+Fertilization rate for NH4,0
+Fertilization rate for NO3,0
+Fertilization rate for Urea,0
