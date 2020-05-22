@@ -1,14 +1,12 @@
-﻿Model options:,
+﻿variable,value
 Mode type,1
 Model type,3
-Site settings:,
 Latitude,44
 Ozone effect on WUE,0
 CO2 effect,0
 Absolute N content,0
 Simulated years from,1981
 Simulated years to,2014
-Climate file name,C:\pnet\PNET\Case\HB\HB_Climate.txt           
 "Water hold capacity,cm",12
 "Snow pack,cm",13
 "Soil Water, cm",12
@@ -24,7 +22,6 @@ Soil respiration factor A,27.46
 Soil respiration factor B,0.068
 N immobolization factor A,151
 N immobolization factor B,-35
-Tree settings:,
 ForestCode,2
 Forest age,80
 Leaf mass,0
@@ -81,7 +78,6 @@ RootTurnoverB,0.191
 RootTurnoverC,0.021
 WoodLitLossRate,0.1
 WoodLitCLoss,0.8
-Management settings:,
 Total number of disturbance,0
 Agriculture from year,0
 Agriculture to year,0
