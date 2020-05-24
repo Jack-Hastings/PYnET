@@ -21,8 +21,7 @@ if pathlib.Path.exists(path_input / 'climate.clim'):
     climate_df = pd.read_table(path_input / 'climate.clim')
 else:
     print('climate file does not exist')
-
-#assign input variables into structure dictionaries
+#assign input variables into structure dictionaries --- not sure this is a good idea, but it'd be transparent.
 #model options
 modeloptions = input_df.iloc[0:2].set_index('variable')['value'].to_dict()
 #site settings
@@ -32,7 +31,6 @@ tree_settings = input_df.iloc[23:78].set_index('variable')['value'].to_dict()
 #management settings
 management_settings = input_df.iloc[79:].set_index('variable')['value'].to_dict()
 #Notice the index pattern here -- seems like [79:] is wrong -- but it works. 
- '''
- Having the data in this structure would allow us to write transparent stuff, like:
- '''
- example = tree_settings['RootTurnoverA'] * tree_settings['WoodTurnover']
+
+#Having the data in this structure would allow us to write transparent stuff, like:
+example = tree_settings['RootTurnoverA'] * tree_settings['WoodTurnover']
