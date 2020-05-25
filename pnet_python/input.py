@@ -7,7 +7,10 @@ import pathlib
 import numpy as np
 import pandas as pd
 
-## read in climate file 
+'''No hardcode paths -- this is giving me issues. 
+Need to figure out where everything should be called from.
+path_input is wrong if I don't call everything form pnet_python...
+'''
 path = pathlib.Path.cwd() 
 path_input = path.parent / 'Input' 
 

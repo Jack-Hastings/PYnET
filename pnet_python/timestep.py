@@ -16,6 +16,7 @@ This is likely, why we see rstep + 1 in Zaixing's code.
 '''
 #for rstep in range(clim_ln):
 #    print(rstep)
+tmin = climate_df[rstep, 3]
 #tave = (tmin + tmax)/2
 #tday = (tmax + tday)/2
 #tnight = (tave + tmin)/2
