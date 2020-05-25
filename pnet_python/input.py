@@ -37,3 +37,4 @@ management_settings = input_df.iloc[79:].set_index('variable')['value'].to_dict(
 
 #Having the data in this structure would allow us to write transparent stuff, like:
 example = tree_settings['RootTurnoverA'] * tree_settings['WoodTurnover']
+print("it worked...")
