@@ -28,6 +28,15 @@ else:
 clim_length = len(climate) 
 
 
+
+
+
+
+
+
+
+
+
 #assign input variables into structure dictionaries --- not sure this is a good idea, but it'd be transparent.
 #model options
 modeloptions = input.iloc[0:2].set_index('variable')['value'].to_dict()
