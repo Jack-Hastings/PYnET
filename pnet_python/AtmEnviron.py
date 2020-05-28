@@ -63,6 +63,7 @@ def atm_environ(rstep):
     nightlength = 3600 * (24.0 - hr) #seconds
 
     #what do I have to return?
+    return(hr)
 
 
 #! come back to these functions
