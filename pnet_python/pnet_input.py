@@ -46,9 +46,61 @@ management_settings = input.iloc[79:].set_index('variable')['value'].to_dict()
 #Having the data in this structure would allow us to write transparent stuff, like:
 example = tree_settings['RootTurnoverA'] * tree_settings['WoodTurnover']
 
+
 '''define empty share dictionary to hold the outputs of each function'''
 
 share = {}
 
+
+def yearinit(share):
+    '''reset certain values at the end of years year'''
+	share['GDDTot'] = 0
+	share['WoodMRespYr'] = 0
+	share['SoilRespYr'] = 0
+	share['TotTrans'] = 0
+	share['TotPsn'] = 0
+	share['TotGrossPsn'] = 0
+	share['TotDrain'] = 0
+	share['TotPrec'] = 0
+	share['TotEvap'] = 0
+	share['TotWater'] =0
+	share['FolProdCYr'] = 0
+	share['WoodProdCYr'] = 0
+	share['RootProdCYr'] = 0
+	share['RootMRespYr'] = 0
+	share['FolGRespYr'] = 0
+	share['WoodGRespYr'] = 0
+	share['RootGRespYr'] = 0
+	share['OldGDDFolEff'] = 0
+	share['OldGDDWoodEff'] = 0
+	share['PosCBalMassTot'] = 0
+	share['PosCBalMassIx'] = 0
+	share['Dwatertot'] = 0
+	share['DwaterIx'] = 0
+	share['NDrainYr']=0
+	share['NetNMinYr']=0
+	share['GrossNMinYr']=0
+	share['PlantNUptakeYr']=0
+	share['GrossNImmobYr']=0
+	share['TotalLitterMYr']=0
+	share['TotalLitterNYr']=0
+	share['NetNitrYr']=0
+	share['LightEffMin']=1
+	share['SoilDecRespYr']=0
+	share['WoodDecRespYr']=0
+	share['NetNMinLastYr'] = share['NetNMinYr']
+
+	share['NdepTot']=0.0 #//ZZX
+
+	share['LightEffCBalTot']=0
+	share['LightEffCBalIx']=0
+
+	share['TaveYr']=0
+	share->'PARYr'=0
+
+	#for (int i = 0; i<51; i++)share->O3Effect[i]=0.0; 
+    '''C++ above. I don't understand '''
+    for i in range(51): 
+        share['O3Effect'] = 1
 
 
