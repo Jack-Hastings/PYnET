@@ -67,7 +67,54 @@ def atm_environ(rstep, share):
     return(share)
 
 
-#! come back to these functions
-def getdays(year, doy):
-    for month in range(1,13): 
-        print(month)
+def getdays(doy, year):
+    if doy > 367 or doy < 1:
+        print("Cannot convert the number to date")
+        return 0
+
+    '''
+    Note that indexing starts at zero. Jan = 0, Feb = 1, etc.
+    This differs from c++ just barely because of that
+    '''
+    days = [31] * 12 #start with 31 days, specify from here
+    days[1] = 28 # feb
+    '''didn't know this about leap years...'''
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        days[1] = 29
+    days[3] = days[5] = days[8] = days[10] = 30 #april, june, sept., Nov.
+
+    i = 0
+    while doy > days[i]:
+        doy -=days[i]
+        i +=1
+
+    return days[i]
+
+def getmonth(doy, year):
+    if doy > 367 or doy < 1:
+        print("Cannot convert the number to date")
+        return 0
+
+    '''
+    Note that indexing starts at zero. Jan = 0, Feb = 1, etc.
+    This differs from c++ just barely because of that
+    '''
+    days = [31] * 12 #start with 31 days, specify from here
+    days[1] = 28 # feb
+    '''didn't know this about leap years...'''
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        days[1] = 29
+    days[3] = days[5] = days[8] = days[10] = 30 #april, june, sept., Nov.
+
+    i = 0
+    while doy > days[i]:
+        doy -=days[i]
+        i +=1
+
+    return i #note subtle difference between getday and getmonth
+
+def is_leapyear(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return 1
+    else:
+        return 0
