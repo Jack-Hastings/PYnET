@@ -1,7 +1,7 @@
 from math import * #this is the same C/C++ Math Library
 from pnet_input import *
 
-def atm_environ(rstep, share):
+def atm_environ(rstep, share): # should I have the other dicts as input?
     '''
     What if for readability we have the the called input variables pulled in 
     first from input, and at the end have another chunk of code 

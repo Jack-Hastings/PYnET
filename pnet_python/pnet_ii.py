@@ -12,7 +12,7 @@ for testing purposes
 '''
 clim_length = 5
 
-for rstep in range(clim_length):
-    atm_environ(rstep, share)
+for i in range(clim_length):
+    atm_environ(i, share)
 
 print(share)
