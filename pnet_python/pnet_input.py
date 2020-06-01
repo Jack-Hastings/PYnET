@@ -1,5 +1,5 @@
 """
-@author: Jack
+@author: Jack Hastings
 Input data
 """
 
