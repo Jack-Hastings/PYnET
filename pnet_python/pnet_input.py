@@ -7,35 +7,35 @@ import pathlib
 import pandas as pd
 
 '''No hardcode paths'''
-path = pathlib.Path.cwd() 
-path_input = path.parent / 'Input' 
+path = pathlib.Path.cwd()
+path_input = path.parent / 'Input'
 
 '''Read in input and climate file.'''
-#Input text file. 
+# Input text file.
 input = pd.read_csv(path_input / 'pynet_input.csv')
 
-#Climate clim file
+# Climate clim file
 climate = pd.read_table(path_input / 'climate.clim')
 
 
 '''assign a climate length to be used in the rstep looping'''
-clim_length = len(climate) 
+clim_length = len(climate)
 
 
 '''Assign the input data to dictionaries
 
-I've done this to mimic the transparency of the c++ structs. 
+I've done this to mimic the transparency of the c++ structs.
 This may or may not be a good idea. Can easily rip it out.
 '''
-#model options
+# model options
 modeloptions = input.iloc[0:2].set_index('variable')['value'].to_dict()
-#site settings
+# site settings
 site_settings = input.iloc[2:23].set_index('variable')['value'].to_dict()
-#tree settings
+# tree settings
 tree_settings = input.iloc[23:78].set_index('variable')['value'].to_dict()
-#management settings
+# management settings
 management_settings = input.iloc[79:].set_index('variable')['value'].to_dict()
-#Notice the index pattern here -- seems like [79:] is wrong -- but it works. 
+# Notice the index pattern here -- seems like [79:] is wrong -- but it works.
 
 
 '''Define share dictionary to hold the outputs of each function.
@@ -43,7 +43,7 @@ management_settings = input.iloc[79:].set_index('variable')['value'].to_dict()
 Values are initially set to zero.
 
 Naming convention:
-*Changed to comply with pep8: Switch from CamelCase to snake_case. 
+*Changed to comply with pep8: Switch from CamelCase to snake_case.
 *Simplified where possible. e.g. gross -> grs
 *Standardized where possible. e.g. Mass, m -> ms; tot to front
 *There is an inconsistency with tot & yearly use. When should we use tot?
@@ -63,7 +63,7 @@ share = {
     'fol_lit_m': 0,				# foliar litter mass, g/m2
     'pos_c_bal_ms': 0,		    # possible C mass at balance point
     'tot_pos_c_bal_ms': 0,		# total potential mass
-    'tot_pos_c_bal_ms_ix': 0,	# total potential mass days
+    'tot_pos_c_bal_ms_ix': 0,   # total potential mass days
     'lai': 0,					# leaf area index
     'd_vpd': 0,					# vpd effect on photosynthesis
     'day_rsp': 0,				# foliar respiration at daytime
@@ -76,7 +76,7 @@ share = {
     'net_psn_mo': 0,			# monthly net psn
     'fol_g_rsp_mo': 0,			# foliar growth respiration
     'wood_maint_rsp_yr': 0,		# yearly wood maintenance respiration
-    'can_grs_psn_act_mo': 0,	#monthly gpp modified by water stress and other stress
+    'can_grs_psn_act_mo': 0,    # monthly gpp modified by water stress and other stress
     'fol_prod_c_yr': 0,			# foliar npp, g C m-2
     'fol_prod_c_mo': 0,			# foliar npp each time step, g C m-2
     'fol_g_rsp_yr': 0,			# foliar yearly growth respiration, g C m-2
@@ -89,7 +89,7 @@ share = {
     'wood_prod_c_yr': 0,		# wood npp, g C m-2
     'wood_g_rsp_yr': 0,			# wood yearly growth respiration, g C m-2
     'tot_psn': 0,				# total net psn
-    'mean_soil_moist_eff': 0,	# soil moisture effect on som decay
+    'mean_soil_moist_eff': 0,   # soil moisture effect on som decay
     'drainage': 0,				# water drainage, as runoff + leaching
     'tot_drain': 0,				# total drainage
     'tot_evap': 0,				# total evaporation
@@ -112,10 +112,10 @@ share = {
     'can_d_o3_pot': 0,			# O3 effect on photosynthesis for the whole canopy
     'drought_o3_frac': 0,		# drought effect on O3 effect
     'tot_o3_dose': 0,			# total O3 dose
-    'root_ms_n': 0,				#root N
+    'root_ms_n': 0,             # root N
     'tot_lit_ms_yr': 0,		    # total yearly litter mass
     'tot_lit_n_yr': 0,		    # total yearly litter N
-    'tot_grs_n_immob_yr': 0,	# total yearly gross N immoblized
+    'tot_grs_n_immob_yr': 0,    # total yearly gross N immoblized
     'tot_grs_n_min_yr': 0,		# total yearly gross N mineralization
     'plant_n_uptake_yr': 0,		# yearly plant uptake N
     'net_nitr_yr': 0,			# yearly net Nitrification rate
@@ -127,7 +127,7 @@ share = {
     'wood_dec_rsp': 0,			# wood decay
     'tot_lit_ms': 0,			# total litter mass
     'tot_lit_n': 0,			    # total litter N
-    'tot_fol_n': 0,				# total foliar N 
+    'tot_fol_n': 0,				# total foliar N
     'tot_fol_c': 0,				# total foliar C
     'tot_n': 0,				    # total N
     'tot_ms': 0,				# total mass
@@ -135,12 +135,12 @@ share = {
     'nh4': 0,					# NH4 content
     'fol_n_con_old': 0, 		# to store FolN for output.
     'tot_n_dep': 0,				# total N deposition
-    #Shared variables with initial conditions
-    'fol_ms': 0,   # FolMass=veg.FolMassMin: 0,   In PnET-Day only,g/m2
-    'bud_c': 0,    # BudC=(veg.FolMassMax- FolMass)*veg.CFracBiomass: 0,  In PnET-Day only
+    # Shared variables with initial conditions
+    'fol_ms': 0,                # FolMass=veg.FolMassMin: 0,   In PnET-Day only,g/m2
+    'bud_c': 0,                 # BudC=(veg.FolMassMax- FolMass)*veg.CFracBiomass: 0,  In PnET-Day only
     'water': 0,		            # soil water
     'dead_wood_ms': 0,	        # dead wood mass
-    'wood_c': 0,		        #  wood C pool for wood growth
+    'wood_c': 0,                # wood C pool for wood growth
     'plant_c': 0,		        # plant C pool to store non structure C
     'root_c': 0,		        # Root C pool for root dynamic growth
     'light_eff_minim': 0,	    # minimum light effect for next year foliar growth
@@ -157,9 +157,9 @@ share = {
     'n_ratio_nit': 0,		    # Nitrification constant determined by Nratio
     'net_n_min_last_yr': 0, 	# previous year net N mineralizatio rate
     'd_water': 0,	  		    # water stress for plant growth
-    'light_eff_c_bal': 0,	    # light effect at foliar light compensation point.
-    'tot_light_eff_c_bal': 0,	# total light effect at foliar light compensation point at growing season
-    'light_eff_c_bal_ix': 0,	# number of days for LightEffCBal > 0.
+    'light_eff_c_bal': 0,       # light effect at foliar light compensation point.
+    'tot_light_eff_c_bal': 0,   # total light effect at foliar light compensation point at growing season
+    'light_eff_c_bal_ix': 0,    # number of days for LightEffCBal > 0.
     'o3_effect': [0] * 50,	    # O3 effect for each canopy layer
     'avg_pcbm': 0,			    # average light effect
     'avg_d_water': 0,		    # average water stress
@@ -167,15 +167,16 @@ share = {
     'par_yr': 0,			    # annual average air Par, umol m-2 s-1 at daytime
 }
 
+
 def yearinit(share):
 	'''reset certain values at the end of years year'''
 	share['tot_gdd'] = 0
-	share['wood_maint_rsp_yr'] = 0 
+	share['wood_maint_rsp_yr'] = 0
 	share['soil_rsp_yr'] = 0
 	share['tot_trans'] = 0
 	share['tot_psn'] = 0
-	share['tot_grs_psn'] = 0 
-	share['tot_drain'] = 0 
+	share['tot_grs_psn'] = 0
+	share['tot_drain'] = 0
 	share['tot_prec'] = 0
 	share['tot_evap'] = 0
 	share['tot_water'] = 0
@@ -195,7 +196,7 @@ def yearinit(share):
 	share['n_drain_yr'] = 0
 	share['net_n_min_yr'] = 0
 	share['tot_grs_n_min_yr'] = 0
-	share['plant_n_uptake_yr'] = 0 
+	share['plant_n_uptake_yr'] = 0
 	share['tot_grs_n_immob_yr'] = 0
 	share['tot_lit_ms_yr'] = 0
 	share['tot_lit_n_yr'] = 0
@@ -205,11 +206,9 @@ def yearinit(share):
 	share['wood_dec_rsp_yr'] = 0
     share['net_n_min_last_yr'] = share['net_n_min_yr'] ''' wont this line  just set it to zero? '''
 	share['tot_n_dep'] = 0.0 #//ZZX
-
 	share['tot_light_eff_c_bal'] = 0
 	share['light_eff_c_bal_ix'] = 0
-
 	share['t_ave_yr'] = 0
 	share['par_yr'] = 0
 
-	#for (int i = 0; i<51; i++)share->O3Effect[i]=0.0; 
+	# for (int i = 0; i<51; i++)share->O3Effect[i]=0.0; 
