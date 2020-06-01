@@ -169,46 +169,47 @@ share = {
 
 
 def yearinit(share):
-	'''reset certain values at the end of years year'''
-	share['tot_gdd'] = 0
-	share['wood_maint_rsp_yr'] = 0
-	share['soil_rsp_yr'] = 0
-	share['tot_trans'] = 0
-	share['tot_psn'] = 0
-	share['tot_grs_psn'] = 0
-	share['tot_drain'] = 0
-	share['tot_prec'] = 0
-	share['tot_evap'] = 0
-	share['tot_water'] = 0
-	share['fol_prod_c_yr'] = 0
-	share['wood_prod_c_yr'] = 0
-	share['root_prod_c_yr'] = 0
-	share['root_maint_rsp_yr'] = 0
-	share['fol_g_rsp_yr'] = 0
-	share['wood_g_rsp_yr'] = 0
-	share['root_g_rsp_yr'] = 0
-	share['old_gdd_fol_eff'] = 0
-	share['old_gdd_wood_eff'] = 0
-	share['tot_pos_c_bal_ms'] = 0
-	share['tot_pos_c_bal_ms_ix'] = 0
-	share['tot_d_water'] = 0
-	share['tot_d_water_ix'] = 0
-	share['n_drain_yr'] = 0
-	share['net_n_min_yr'] = 0
-	share['tot_grs_n_min_yr'] = 0
-	share['plant_n_uptake_yr'] = 0
-	share['tot_grs_n_immob_yr'] = 0
-	share['tot_lit_ms_yr'] = 0
-	share['tot_lit_n_yr'] = 0
-	share['net_nitr_yr'] = 0
-	share['light_eff_minim'] = 1
-	share['soil_dec_rsp_yr'] = 0
-	share['wood_dec_rsp_yr'] = 0
-    share['net_n_min_last_yr'] = share['net_n_min_yr'] ''' wont this line  just set it to zero? '''
-	share['tot_n_dep'] = 0.0 #//ZZX
-	share['tot_light_eff_c_bal'] = 0
-	share['light_eff_c_bal_ix'] = 0
-	share['t_ave_yr'] = 0
-	share['par_yr'] = 0
-
-	# for (int i = 0; i<51; i++)share->O3Effect[i]=0.0; 
+    '''reset certain values at the end of years year'''
+    share['tot_gdd'] = 0
+    share['wood_maint_rsp_yr'] = 0
+    share['soil_rsp_yr'] = 0
+    share['tot_trans'] = 0
+    share['tot_psn'] = 0
+    share['tot_grs_psn'] = 0
+    share['tot_drain'] = 0
+    share['tot_prec'] = 0
+    share['tot_evap'] = 0
+    share['tot_water'] = 0
+    share['fol_prod_c_yr'] = 0
+    share['wood_prod_c_yr'] = 0
+    share['root_prod_c_yr'] = 0
+    share['root_maint_rsp_yr'] = 0
+    share['fol_g_rsp_yr'] = 0
+    share['wood_g_rsp_yr'] = 0
+    share['root_g_rsp_yr'] = 0
+    share['old_gdd_fol_eff'] = 0
+    share['old_gdd_wood_eff'] = 0
+    share['tot_pos_c_bal_ms'] = 0
+    share['tot_pos_c_bal_ms_ix'] = 0
+    share['tot_d_water'] = 0
+    share['tot_d_water_ix'] = 0
+    share['n_drain_yr'] = 0
+    share['net_n_min_yr'] = 0
+    share['tot_grs_n_min_yr'] = 0
+    share['plant_n_uptake_yr'] = 0
+    share['tot_grs_n_immob_yr'] = 0
+    share['tot_lit_ms_yr'] = 0
+    share['tot_lit_n_yr'] = 0
+    share['net_nitr_yr'] = 0
+    share['light_eff_minim'] = 1
+    share['soil_dec_rsp_yr'] = 0
+    share['wood_dec_rsp_yr'] = 0
+    share['net_n_min_last_yr'] = share['net_n_min_yr'] # Won't this be zero?
+    share['tot_n_dep'] = 0.0  # //ZZX
+    share['tot_light_eff_c_bal'] = 0
+    share['light_eff_c_bal_ix'] = 0
+    share['t_ave_yr'] = 0
+    share['par_yr'] = 0
+    ''' reset all 50 layers '''
+    for i in range(0, 10):
+        share['o3_effect'][i] = 0
