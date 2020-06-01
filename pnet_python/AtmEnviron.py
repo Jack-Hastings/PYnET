@@ -19,7 +19,8 @@ def atm_environ(rstep, share): # should I have the other dicts as input?
     tnight =(tave + tmin)/2.0
 
     latrad = site_settings['Latitude'] * (2.0 * pi)/ 360
-    r = 1 - (0.0167 * cos(0.0172 * (doy - 3))) #where is this used again?
+    ''' r is a hold over from matlab. Never used. delete? '''
+    r = 1 - (0.0167 * cos(0.0172 * (doy - 3))) 
     z = (0.39785 * sin(4.868961 + 0.017203 * doy + 0.033446 *
      sin(6.224111 + 0.017202 * doy)))
     # I want to put in comments to reference each equation
