@@ -1,4 +1,4 @@
-Year	DOY	MaxT(oc)	MinT(oc)	PAR(umol/m2/s)	Precip(cm)	O3	CO2(ppm)	NH4(gN/m2*yr)	NO3(gN/m2*yr)
+year	doy	max_t	min_t	par	precip	o3	co2	nh4	no3
 1706	15	4.49	-4.9	276.959	6.28	0	282.506	0.00928	0.003227
 1706	46	6.672	-2.455	302.855	3.15	0	282.506	0.00928	0.003227
 1706	74	12.077	2.016	474.568	5.06	0.048	282.506	0.00928	0.003227

@@ -15,10 +15,10 @@ path_input = path.parent / 'Input'
 input = pd.read_csv(path_input / 'pynet_input.csv')
 
 # Climate clim file
-climate = pd.read_table(path_input / 'climate.clim')
+clim = pd.read_table(path_input / 'climate.clim')
 
 '''assign a climate length to be used in the rstep looping'''
-clim_length = len(climate)
+clim_length = len(clim)
 
 
 '''Assign the input data to dictionaries
@@ -29,11 +29,11 @@ This may or may not be a good idea. Can easily rip it out.
 # model options
 modeloptions = input.iloc[0:2].set_index('variable')['value'].to_dict()
 # site settings
-site_settings = input.iloc[2:23].set_index('variable')['value'].to_dict()
-# tree settings
-tree_settings = input.iloc[23:78].set_index('variable')['value'].to_dict()
-# management settings
-management_settings = input.iloc[79:].set_index('variable')['value'].to_dict()
+site = input.iloc[2:23].set_index('variable')['value'].to_dict()
+# tree/forest settings
+veg = input.iloc[23:78].set_index('variable')['value'].to_dict()
+# management settings '''this maybe should be in the site dictionary'''
+management = input.iloc[79:].set_index('variable')['value'].to_dict()
 # Notice the index pattern here -- seems like [79:] is wrong -- but it works.
 
 '''Import shared variables --  convert to dictionary
@@ -42,8 +42,8 @@ management_settings = input.iloc[79:].set_index('variable')['value'].to_dict()
 *Convert to dictionary with initialization value of zero
 *Modify...
 '''
-shared = pd.read_csv(path_input / 'shared_variables.csv')
-shared = shared.set_index('shared_variables')['init_val'].to_dict()
+share = pd.read_csv(path_input / 'shared_variables.csv')
+share = share.set_index('shared_variables')['init_val'].to_dict()
 
 
 

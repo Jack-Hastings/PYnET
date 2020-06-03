@@ -1,91 +1,91 @@
 ﻿variable,value
-Mode type,1
-Model type,3
-Latitude,44
-Ozone effect on WUE,0
-CO2 effect,0
-Absolute N content,0
-Simulated years from,1981
-Simulated years to,2014
-"Water hold capacity,cm",12
-"Snow pack,cm",13
-"Soil Water, cm",12
-Soil moisture factor,0
-Fast flow fraction,0.1
-Water realease factor,0.04
-Water stress,1
-"Humus mass, g/M2",13500
-"Humus N mass, g/M2",390
-"Soil NH4 content, g/M2",0.01
-Humus decomposition constant,0.075
-Soil respiration factor A,27.46
-Soil respiration factor B,0.068
-N immobolization factor A,151
-N immobolization factor B,-35
-ForestCode,2
-Forest age,80
-Leaf mass,0
-Wood mass,20000
-Dead Wood mass,11300
-Root mass,6
-BudC,135
-WoodC,300
-PlantC,900
-PlantN,1
-N Ratio,1.4
-AmaxA,-46
-AmaxB,71.9
-HalfSat,200
-BaseFolRespFrac,0.1
-RespQ10,2
-PsnTMin,4
-PsnTOpt,24
-AmaxFrac,0.75
-FolReten,1
-"SLWmax, 'g dry matter/m2 leaf",100
-"SLWdel, 'g dry matter/(m2 leaf * g leaf mass)",0.2
-GDDFolStart,100
-GDDFolEnd,900
-GDDWoodStart,900
-GDDWoodEnd,1600
-SenescStart,270
-Max leaf mass,340
-Min leaf mass,0
+mode_type,1
+model_type,3
+lat,44
+o3_eff_on_wue,0
+co2_gs_effect,0
+n_abs,0
+year_start,1981
+year_end,2014
+whc,12
+snow_pack,13
+soil_water,12
+soil_moist_fact,0
+fast_flow_frac,0.1
+water_release__fact,0.04
+water_stress,1
+hom,13500
+hon,390
+nh4,0.01
+kho,0.075
+soil_rsp_a,27.46
+soil_rsp_b,0.068
+n_immob_a,151
+n_immob_b,-35
+forest_code,2
+forest_age,80
+fol_ms,0
+wood_ms,20000
+dead_wood_ms,11300
+root_ms,6
+bud_c,135
+wood_c,300
+plant_c,900
+plant_n,1
+n_ratio,1.4
+amax_a,-46
+amax_b,71.9
+half_sat,200
+base_fol_rsp_frac,0.1
+rsp_q10,2
+psn_t_min,4
+psn_t_opt,24
+amax_frac,0.75
+fol_reten,1
+slw_max,100
+slw_del,0.2
+gdd_fol_start,100
+gdd_fol_end,900
+gdd_wood_start,900
+gdd_wood_end,1600
+senesce_start,270
+fol_ms_max,340
+fol_ms_min,0
 k,0.58
-"FolNCon, by weight",2
-"FolRelGrowMax, '/yr",0.95
-CFracBiomass,0.45
-RootAllocA,0
-RootAllocB,2
-GRespFrac,0.25
-WoodMRFrc,0.07
-RootMRespFrc,1
-PlantCReserveFrac,0.75
-MinWoodFolRatio,1
-DVPD1,0.05
-DVPD2,2
-WUEConst,10.9
-PrecIntFrac,0.11
-FLPctN,0.009
-RLPctN,0.012
-WLPctN,0.002
-FolNConRange,0.6
-FolNRetrans,0.5
-MaxNStore,20
-WoodTurnover,0.025
-RootTurnoverA,0.789
-RootTurnoverB,0.191
-RootTurnoverC,0.021
-WoodLitLossRate,0.1
-WoodLitCLoss,0.8
-Total number of disturbance,0
-Agriculture from year,0
-Agriculture to year,0
-Agriculture removal fraction,0
-Fertilization from year,0
-Fertilization from DOY,0
-Fertilization to year,0
-Fertilization to DOY,0
-Fertilization rate for NH4,0
-Fertilization rate for NO3,0
-Fertilization rate for Urea,0
+fol_n_con,2
+fol_rel_grow_max,0.95
+c_frac_biomass,0.45
+root_alloc_a,0
+root_alloc_b,2
+g_rsp_frac,0.25
+wood_maint_rsp_a,0.07
+root_maint_rsp_frac,1
+plant_c_res_frac,0.75
+min_wood_fol_ratio,1
+dvpd1,0.05
+dvpd2,2
+wue_const,10.9
+prec_int_frac,0.11
+min_fol_lit_n,0.009
+min_root_lit_n,0.012
+min_wood_lit_n,0.002
+fol_n_con_range,0.6
+fol_n_retrans,0.5
+max_n_store,20
+wood_turnover,0.025
+root_turnover_a,0.789
+root_turnover_b,0.191
+root_turnover_c,0.021
+wood_lit_loss_rate,0.1
+wood_lit_c_loss,0.8
+dist_yrs,0
+ag_start,0
+ag_stop,0
+ag_rem,0
+fert_start_yr,0
+fert_start_doy,0
+fert_end_yr,0
+fertn_end_doy,0
+fert_nh4,0
+fert_no3,0
+fert_urea,0

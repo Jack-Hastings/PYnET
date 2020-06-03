@@ -1,28 +1,17 @@
-from math import * #this is the same C/C++ Math Library
-from pnet_input import *
+from math import sin, pi, fabs, tan, atan, sqrt, pow # same C/C++ Math Library
+from pnet_input import clim, site, share
 
 def atm_environ(rstep, share): # should I have the other dicts as input?
-    '''
-    What if for readability we have the the called input variables pulled in 
-    first from input, and at the end have another chunk of code 
-    that sends everything to the shared dictionary? 
-    Functionally, this would be the same, but it'd increase readabilty...
-    I could also do the same with stuff like site_settings['Latitude'].
-    '''
-    #r
-    tmin = climate.loc[rstep,'MinT(oc)'] 
-    tmax = climate.loc[rstep,'MaxT(oc)']
-    doy = climate.loc[rstep,'DOY']
 
-    tave = (tmin+ tmax)/2.0
-    tday = (tmax + tave)/2.0
-    tnight =(tave + tmin)/2.0
+    share['t_ave'] = (clim.loc[rstep,'min_t'] + clim.loc[rstep,'max_t']) / 2.0
+    share['t_day'] = (clim.loc[rstep,'max_t'] + share['t_ave'])/2.0
+    share['t_night'] =(share['t_ave'] + clim.loc[rstep,'min_t'])/2.0
 
-    latrad = site_settings['Latitude'] * (2.0 * pi)/ 360
+    latrad = site['lat'] * (2.0 * pi)/ 360
     ''' r is a hold over from matlab. Never used. delete? '''
-    r = 1 - (0.0167 * cos(0.0172 * (doy - 3))) 
-    z = (0.39785 * sin(4.868961 + 0.017203 * doy + 0.033446 *
-     sin(6.224111 + 0.017202 * doy)))
+    # r = 1 - (0.0167 * cos(0.0172 * (clim.loc[rstep,'doy'] - 3))) 
+    z = (0.39785 * sin(4.868961 + 0.017203 * clim.loc[rstep,'doy'] + 0.033446 *
+     sin(6.224111 + 0.017202 * clim.loc[rstep,'doy'])))
     # I want to put in comments to reference each equation
     if fabs(z) < 0.7:
         decl = atan(z / (sqrt(1.0 - pow(z, 2))))
@@ -30,7 +19,7 @@ def atm_environ(rstep, share): # should I have the other dicts as input?
         decl = pi / 2.0 - atan(sqrt(1 - pow(z,2)) / z)
 
     if fabs(latrad) >= (pi / 2):
-        if (site_settings['Latitude'] < 0):
+        if (site['lat'] < 0):
             latrad = (-1.0) * (pi / 2.0 - 0.01)
         else: 
             latrad = (1.0) * (pi / 2.0 - 0.01)
@@ -53,18 +42,9 @@ def atm_environ(rstep, share): # should I have the other dicts as input?
             h = AC 
     
     hr = 2.0 * (h * 24.0) / (2.0 * pi) # hours
-    daylength = 3600 * hr # seconds
-    nightlength = 3600 * (24.0 - hr) #seconds
-
-    '''
-    Assign shared variables to the share dictionary
-    '''
-    share['tave'] = tave
-    share['tday'] = tday
-    share['tnight'] = tnight
-    share['daylength'] = daylength
-    share['nightlength'] = nightlength
-    
+    share['day_length'] = 3600 * hr # seconds
+    share['night_length'] = 3600 * (24.0 - hr) #seconds
+   
     return(share)
 
 
