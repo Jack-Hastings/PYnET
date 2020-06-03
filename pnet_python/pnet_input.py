@@ -33,7 +33,7 @@ site = input.iloc[2:23].set_index('variable')['value'].to_dict()
 # tree/forest settings
 veg = input.iloc[23:78].set_index('variable')['value'].to_dict()
 # management settings '''this maybe should be in the site dictionary'''
-management = input.iloc[79:].set_index('variable')['value'].to_dict()
+disturbance = input.iloc[79:].set_index('variable')['value'].to_dict()
 # Notice the index pattern here -- seems like [79:] is wrong -- but it works.
 
 '''Import shared variables --  convert to dictionary
@@ -45,7 +45,49 @@ management = input.iloc[79:].set_index('variable')['value'].to_dict()
 share = pd.read_csv(path_input / 'shared_variables.csv')
 share = share.set_index('shared_variables')['init_val'].to_dict()
 
+'''!!! Need to talk about what variables are lumped where...
+e.g. in c++
+FolMass,WoodMass, DeadWoodM, RootMass, BudC, WoodC, PlantC, PlantN, and NRatio
+are read into the share struct, but in the input file they fall within the veg
+parameters...why? 
+and
+in pnet_initvars.cpp,
+several variables are initialized with non-zero values:
+Dwater, LightEffmin,LightEffCBal, RootNSinkEff, NRatioNit, NetNMinLastYear
+Shouldn't these be in the input file?
 
+several variables are initialized based on some other input variable e.g.
+WoodMassN, DeadWoodN, RootC
+
+And then there are some input variables that take the place of others...
+seems unnecessary? 
+e.g. veg->SoilRespA=site->SoilRespA;
+just keep it as original. 
+
+but for now...modifiy...
+'''
+#the ones that should be in the input
+share['d_water'] = 1
+share['light_eff_minim'] = 1
+share['root_n_sink_eff'] = 0.5
+share['n_ratio_nit'] = 1
+share['net_n_min_last_yr'] = 10
+share['avg_pcbm'] = 1.0
+share['avg_d_water'] = 1
+
+#the ones based on equations
+#these veg[] parameters are read into share[] in c++. That seems wrong
+share['root_c'] = veg['wood_c'] / 3
+share['tot_wood_ms_n'] = veg['wood_ms'] * veg['min_wood_lit_n'] * veg['n_ratio']
+share['tot_dead_wood_n'] = veg['dead_wood_ms'] * veg['min_wood_lit_n'] * veg['n_ratio']
+
+#skipping converting variables between structures.
+
+'''there are some variables that don't exist in the CN code
+but are present in the daily version...
+won't add any more now -- this is reminder. 
+'''
+share['yr_spin'] = 1000 
 
 
 def yearinit(share):
