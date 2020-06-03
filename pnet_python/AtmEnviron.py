@@ -1,7 +1,7 @@
 from math import sin, pi, fabs, tan, atan, sqrt, pow # same C/C++ Math Library
 from pnet_input import clim, site, share
 
-def atm_environ(rstep, share): # should I have the other dicts as input?
+def atm_environ(rstep, share, clim, site): # for transparency, require input dictionaries
 
     share['t_ave'] = (clim.loc[rstep,'min_t'] + clim.loc[rstep,'max_t']) / 2.0
     share['t_day'] = (clim.loc[rstep,'max_t'] + share['t_ave'])/2.0
