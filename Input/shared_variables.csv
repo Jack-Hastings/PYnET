@@ -8,7 +8,7 @@ shared_variables,init_val
 "dayspan 			",0
 "tot_gdd			",0
 "old_gdd_fol_eff		",0
-"fol_lit_m			",0
+"fol_lit_ms		",0
 "pos_c_bal_ms		",0
 "tot_pos_c_bal_ms		",0
 "tot_pos_c_bal_ms_ix   	",0
@@ -80,23 +80,11 @@ tot_fol_c,0
 tot_n,0
 tot_ms,0
 no3,0
-nh4,0
 fol_n_con_old ,0
 tot_n_dep,0
-soil_water,0
-dead_wood_ms,0
-wood_c                ,0
-plant_c,0
 root_c,0
 light_eff_minim,0
-n_ratio,0
-plant_n,0
-wood_ms,0
-root_ms,0
-hom,0
-hon,0
 root_n_sink_eff,0
-wue_o3_eff,0
 tot_wood_ms_n,0
 tot_dead_wood_n,0
 n_ratio_nit,0

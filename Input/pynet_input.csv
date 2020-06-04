@@ -2,7 +2,7 @@
 mode_type,1
 model_type,3
 lat,44
-o3_eff_on_wue,0
+wue_o3_eff,0
 co2_gs_effect,0
 n_abs,0
 year_start,1981

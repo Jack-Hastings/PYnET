@@ -10,8 +10,8 @@ def atm_environ(rstep, share, clim, site): # for transparency, require input dic
     latrad = site['lat'] * (2.0 * pi)/ 360
     ''' r is a hold over from matlab. Never used. delete? '''
     # r = 1 - (0.0167 * cos(0.0172 * (clim.loc[rstep,'doy'] - 3))) 
-    z = (0.39785 * sin(4.868961 + 0.017203 * clim.loc[rstep,'doy'] + 0.033446 *
-     sin(6.224111 + 0.017202 * clim.loc[rstep,'doy'])))
+    z = 0.39785 * sin(4.868961 + 0.017203 * clim.loc[rstep,'doy'] + \
+        0.033446 *sin(6.224111 + 0.017202 * clim.loc[rstep,'doy']))
     # I want to put in comments to reference each equation
     if fabs(z) < 0.7:
         decl = atan(z / (sqrt(1.0 - pow(z, 2))))
