@@ -68,7 +68,7 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
             if fol_ms_new < veg['fol_ms']:
                 share['fol_lit_ms'] = veg['fol_ms'] - fol_ms_new
             
-            veg[fol_ms] = fol_ms_new
+            veg['fol_ms'] = fol_ms_new
             '''This may be a reason to have fol_ms in the share pool -- it change
             Pay attention for other non-share variables that change. 
             If it's just the ones that were assigned to share in c++ that'll explain the logic'''
