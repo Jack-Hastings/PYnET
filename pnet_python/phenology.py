@@ -10,11 +10,13 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
         what about timestep == 2; hourly 
         '''
         if timestep == 0: #monthly timestep
-            share['dayspan'] = getdays(clim.loc[rstep,'doy'], clim.loc[rstep,'year'])
+            share['dayspan'] =      \
+                 getdays(clim.loc[rstep,'doy'], clim.loc[rstep,'year'])
         elif timestep == 1: # daily
             share['dayspan'] = 1
         else: 
-            share['dayspan'] = getdays(clim.loc[rstep,'doy'], clim.loc[rstep,'year'])
+            share['dayspan'] =      \
+                getdays(clim.loc[rstep,'doy'], clim.loc[rstep,'year'])
 
         gdd = share['t_ave'] * share['dayspan']
 
@@ -27,10 +29,12 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
         
         share['tot_gdd'] += gdd
 
-        if share['tot_gdd'] >= veg['gdd_fol_start'] and clim.loc[rstep,'doy'] < veg['senesce_start']:
+        if share['tot_gdd'] >= veg['gdd_fol_start'] and     \
+            clim.loc[rstep,'doy'] < veg['senesce_start']:
 
             old_fol_ms = veg['fol_ms']
-            gdd_fol_eff = (share['tot_gdd'] - veg['gdd_fol_start']) / (veg['gdd_fol_end'] - veg['gdd_fol_start'])
+            gdd_fol_eff = (share['tot_gdd'] - veg['gdd_fol_start']) /   \
+                (veg['gdd_fol_end'] - veg['gdd_fol_start'])
 
             if gdd_fol_eff < 0:
                 gdd_fol_eff = 0
@@ -40,8 +44,10 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
                 Can I write this as a simple ifelse?'''
             
             del_gdd_fol_eff = gdd_fol_eff - share['old_gdd_fol_eff']
-            veg['fol_ms'] = veg['fol_ms'] + (veg['bud_c'] * del_gdd_fol_eff) / veg['c_frac_biomass']
-            share['fol_prod_c_mo'] = (veg['fol_ms'] - old_fol_ms) * veg['c_frac_biomass']
+            veg['fol_ms'] = veg['fol_ms'] +     \
+                (veg['bud_c'] * del_gdd_fol_eff) / veg['c_frac_biomass']
+            share['fol_prod_c_mo'] =    \
+                 (veg['fol_ms'] - old_fol_ms) * veg['c_frac_biomass']
             share['fol_g_rsp_mo'] = share['fol_prod_c_mo'] * veg['g_rsp_frac']
             share['old_gdd_fol_eff'] = gdd_fol_eff
         else:
@@ -52,7 +58,8 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
         
         share['fol_lit_m'] = 0
 
-        if share['pos_c_bal_ms'] < veg['fol_ms'] and clim.loc[rstep, 'doy'] > veg['senesce_start']:
+        if share['pos_c_bal_ms'] < veg['fol_ms'] and    \
+             clim.loc[rstep, 'doy'] > veg['senesce_start']:
 
             if share['pos_c_bal_ms'] > veg['fol_ms_min']:
                 fol_ms_new = share['pos_c_bal_ms']
