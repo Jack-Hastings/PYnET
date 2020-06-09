@@ -27,7 +27,7 @@ def waterbal(site, veg, clim, share, rstep, timestep):
 
         t_ave_w = share['t_ave']
         if share['t_ave'] < 1.0:
-        t_ave_w = 1.0
+            t_ave_w = 1.0
 
         if clim.loc[rstep, 't_min'] > snow_t_crit:
         snow_frac = 0
