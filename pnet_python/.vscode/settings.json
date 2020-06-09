@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "C:\\Users\\Jack\\miniconda3\\envs\\pnet\\python.exe"
+    "python.pythonPath": "C:\\Users\\Jack\\miniconda3\\envs\\pnet\\python.exe",
+    "files.associations": {
+        "*.tcc": "cpp",
+        "cmath": "cpp"
+    }
 }
