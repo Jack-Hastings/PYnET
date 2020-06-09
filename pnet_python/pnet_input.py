@@ -15,7 +15,8 @@ path_input = path.parent / 'Input'
 input = pd.read_csv(path_input / 'pynet_input.csv')
 
 # Climate clim file
-clim = pd.read_table(path_input / 'pynet_climate.clim')
+
+clim = pd.read_csv(path_input / 'pynet_climate.csv')
 
 '''assign a climate length to be used in the rstep looping'''
 clim_length = len(clim)

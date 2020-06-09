@@ -6,9 +6,11 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
     '''Phenology calculations for the PnET ecosystem model '''
 
     if growthphase == 1:
-        '''elif instead of c++ switch case
 
-        what about timestep == 2; hourly 
+        ''' ---------------PnET-Daily--------------------
+        PnET-CN only has code snippet for monthly timestep. Run w/timestep = 0
+
+        elif instead of c++ switch case
         '''
         if timestep == 0:  # monthly timestep
             share['dayspan'] = getdays(
@@ -19,14 +21,19 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
             share['dayspan'] = getdays(
                 clim.loc[rstep, 'doy'], clim.loc[rstep, 'year'])
 
+        ''' -------------------------------------------------------'''        
+
         gdd = share['t_ave'] * share['dayspan']
 
         share['t_ave_yr'] += gdd / 365
         share['par_yr'] += clim.loc[rstep, 'par'] * share['dayspan'] / 365
 
+        ''' ---------------PnET-Daily--------------------
+        Pnet-CN does not have the doy logical
+        '''
         if gdd < 0 or clim.loc[rstep, 'doy'] < 60:
             gdd = 0  # Need to modify for tropical regions
-
+        ''' -------------------------------------------------------'''   
         share['tot_gdd'] += gdd
 
         if share['tot_gdd'] >= veg['gdd_fol_start'] and clim.loc[rstep, 'doy'] < veg['senesce_start']:
@@ -77,3 +84,5 @@ def phenology(rstep, veg, clim, share, growthphase, timestep):
             '''This may be a reason to have fol_ms in the share pool -- it change
             Pay attention for other non-share variables that change. 
             If it's just the ones that were assigned to share in c++ that'll explain the logic'''
+
+    return(share)
