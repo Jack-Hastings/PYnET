@@ -1,4 +1,4 @@
-from math import sin, pi, fabs, tan, atan, sqrt, pow  # same C/C++ Math Library
+from math import sin, pi, fabs, tan, atan, sqrt, pow, exp  # same C/C++ Math Library
 from pnet_input import clim, site, share
 
 
@@ -46,6 +46,21 @@ def atm_environ(rstep, share, clim, site):  # for transparency, require input di
     hr = 2.0 * (h * 24.0) / (2.0 * pi)  # hours
     share['day_length'] = 3600 * hr  # seconds
     share['night_length'] = 3600 * (24.0 - hr)  # seconds
+
+    es = 0.61078 * exp(17.26939 *  share['t_day'] / (share['t_day'] + 237.3))
+    '''delta is defined, but never used in pnet-cn or pnet-daily AtmEnviron'''
+    delta = 4098.0 * es / ((share['t_day'] + 237.3) * (share['t_day'] + 237.3))
+
+    if(share['t_day'] < 0):
+        es = 0.61078 * exp(21.87456 *  share['t_day'] / (share['t_day'] + 265.5))
+        delta = 5808.0 * es / ((share['t_day'] + 265.5) * (share['t_day'] + 265.5))
+
+    e_mean = 0.61078 * exp(17.26939 * clim.loc[rstep, 't_min'] / (clim.loc[rstep, 't_min'] + 237.3))
+
+    if clim.loc[rstep, 't_min'] < 0:
+        e_mean = 0.61078 * exp(21.87456 * clim.loc[rstep, 't_min'] / (clim.loc[rstep, 't_min'] + 265.5))
+
+    share['vpd'] = es - e_mean
 
     return(share)
 
