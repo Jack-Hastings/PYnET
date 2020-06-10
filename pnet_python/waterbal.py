@@ -30,10 +30,10 @@ def waterbal(site, veg, clim, share, rstep, timestep):
             t_ave_w = 1.0
 
         if clim.loc[rstep, 't_min'] > snow_t_crit:
-        snow_frac = 0
-        snow_melt = 0.15 * t_ave_w
+            snow_frac = 0
+            snow_melt = 0.15 * t_ave_w
         else:
-        snow_frac = 1.0
+            snow_frac = 1.0
 
     '''Snowmelt'''
     site['snow_pack'] = site['snow_pack'] + precip_rem * snow_frac
@@ -85,13 +85,15 @@ def waterbal(site, veg, clim, share, rstep, timestep):
             else: 
                 d_temp = site['whc']
 
-            tot_soil_moist_eff += pow((d_temp / site['whc']), (1.0 + site['soil_moist_frac']))
+            tot_soil_moist_eff += \
+                pow((d_temp / site['whc']), (1.0 + site['soil_moist_frac']))
 
             wday += 1 
             # end of daily loop
 
 
-        share['mean_soil_moist_eff'] = tot_soil_moist_eff / share['dayspan'] #// bug correct, zzx
+        share['mean_soil_moist_eff'] = \
+            tot_soil_moist_eff / share['dayspan'] #// bug correct, zzx
         if share['mean_soil_moist_eff'] > 1:
             share['mean_soil_most_eff'] = 1
 
@@ -153,3 +155,4 @@ def waterbal(site, veg, clim, share, rstep, timestep):
     share['et'] = trans + evap
 
 
+def func:

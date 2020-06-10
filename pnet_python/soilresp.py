@@ -10,7 +10,3 @@ def soilresp(veg, share, rstep):
     share['soil_rsp_mo'] = share['soil_rsp_mo'] * (share['dayspan'] / 30.5) #g C/m2.DaySpan
     share['soil_rsp_yr'] = share['soil_rsp_yr'] + share['soil_rsp_mo']
 
-    '''Besides being a bit harder to follow
-
-    Couldn't the first three lines of this be lumped into one long equation?
-    '''
